@@ -2,6 +2,7 @@ package peaksoft.driverapp.dto.client;
 
 import lombok.Getter;
 import lombok.Setter;
+import peaksoft.driverapp.annotations.ValidPhoneNumber;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -15,7 +16,7 @@ public class ClientSaveDto {
     private String name;
     @Email
     private String email;
-    @NotBlank   // TODO: 28/3/22 write own validation annotation
+    @ValidPhoneNumber
     private String phoneNumber;
     @NotBlank
     private String accountNumber;

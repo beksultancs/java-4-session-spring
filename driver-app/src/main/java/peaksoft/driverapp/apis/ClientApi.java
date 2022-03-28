@@ -45,7 +45,7 @@ public class ClientApi {
 
     @PutMapping("/update/{clientId}")
     public ClientResponseDto update(@PathVariable UUID clientId,
-                                    @RequestBody ClientSaveDto clientSaveDto) {
+                                    @RequestBody @Valid ClientSaveDto clientSaveDto) {
         return clientService.update(clientId, clientSaveDto);
     }
 
