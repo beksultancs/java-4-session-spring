@@ -1,4 +1,4 @@
-package peaksoft.driverapp.dto;
+package peaksoft.driverapp.dto.client;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -13,5 +13,5 @@ import java.util.UUID;
 public class ClientResponseDto {
     private UUID id;
     private String name;
-    private String email;
+    private String phoneNumber;
 }

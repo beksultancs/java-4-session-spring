@@ -5,20 +5,12 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQL10Dialect
     hibernate:
-      ddl-auto: create
-    show-sql: true
+      ddl-auto: update
+    show-sql: false
 server:
   port: 5656
+  error:
+    include-message: always
+    include-stacktrace: always
 
-
-driver-app:
-  standart:
-    landing: 60
-    per-km: 12
-  comfort:
-    landing: 80
-    per-km: 15
-  business-class:
-    landing: 100
-    per-km: 20
 

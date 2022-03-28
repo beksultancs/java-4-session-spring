@@ -1,8 +1,8 @@
 package peaksoft.driverapp.dto.mapper;
 
 import org.springframework.stereotype.Component;
-import peaksoft.driverapp.dto.ClientResponseDto;
-import peaksoft.driverapp.dto.ClientSaveDto;
+import peaksoft.driverapp.dto.client.ClientResponseDto;
+import peaksoft.driverapp.dto.client.ClientSaveDto;
 import peaksoft.driverapp.models.entities.BankAccount;
 import peaksoft.driverapp.models.entities.Client;
 
@@ -34,7 +34,7 @@ public class ClientMapper implements Converter<Client, ClientSaveDto, ClientResp
     public ClientResponseDto deConvert(Client client) {
         ClientResponseDto clientResponseDto = new ClientResponseDto();
         clientResponseDto.setName(client.getName());
-        clientResponseDto.setEmail(client.getEmail());
+        clientResponseDto.setPhoneNumber(client.getPhoneNumber());
         clientResponseDto.setId(client.getId());
         return clientResponseDto;
     }

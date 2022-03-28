@@ -1,14 +1,15 @@
 package peaksoft.driverapp.apis;
 
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import peaksoft.driverapp.dto.ClientResponseDto;
-import peaksoft.driverapp.dto.ClientSaveDto;
-import peaksoft.driverapp.models.entities.Client;
+import org.springframework.web.bind.annotation.*;
+import peaksoft.driverapp.dto.client.ClientResponseDto;
+import peaksoft.driverapp.dto.client.ClientSaveDto;
+import peaksoft.driverapp.dto.client.GetClientDto;
 import peaksoft.driverapp.services.ClientService;
+
+import javax.validation.Valid;
+import java.util.List;
+import java.util.UUID;
 
 /**
  * @author Beksultan
@@ -21,7 +22,31 @@ public class ClientApi {
     private final ClientService clientService;
 
     @PostMapping("/save")
-    public ClientResponseDto save(@RequestBody ClientSaveDto client) {
+    public ClientResponseDto save(@RequestBody @Valid ClientSaveDto client) {
         return clientService.save(client);
     }
+
+    @GetMapping
+    public List<ClientResponseDto> findAll() {
+        return clientService.findAll();
+    }
+
+    @GetMapping("/find/by")
+    public GetClientDto findBy(@RequestParam(required = false) UUID id,
+                               @RequestParam(required = false) String email,
+                               @RequestParam(required = false) String phoneNumber) {
+        return clientService.findBy(id, email, phoneNumber);
+    }
+
+    @DeleteMapping("/delete/{clientId}")
+    public void deleteById(@PathVariable UUID clientId) {
+        clientService.delete(clientId);
+    }
+
+    @PutMapping("/update/{clientId}")
+    public ClientResponseDto update(@PathVariable UUID clientId,
+                                    @RequestBody ClientSaveDto clientSaveDto) {
+        return clientService.update(clientId, clientSaveDto);
+    }
+
 }

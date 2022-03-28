@@ -30,6 +30,6 @@ public class Client {
     private List<Order> orders = new ArrayList<>();
 
     @OneToOne(cascade = ALL,
-            fetch = LAZY)
+            fetch = EAGER)
     private BankAccount bankAccount;
 }
