@@ -33,4 +33,4 @@ build/
 .vscode/
 
 ## ignoring image
-/src/main/recources/static/Screen Shot 2021-12-22 at 15.02.52.png
+src/main/resources/static/Screen Shot 2021-12-22 at 15.02.52.png

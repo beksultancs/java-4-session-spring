@@ -15,6 +15,8 @@ public class BankAccount {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
+    private String accountNumber;
+
     private String fullName;
 
     private BigDecimal bigDecimal;

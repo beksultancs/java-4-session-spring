@@ -1,5 +1,8 @@
 package peaksoft.driverapp.models.entities;
 
+import lombok.Getter;
+import lombok.Setter;
+import peaksoft.driverapp.models.enums.CarType;
 import peaksoft.driverapp.models.enums.EngineType;
 
 import javax.persistence.*;
@@ -10,6 +13,7 @@ import static javax.persistence.CascadeType.*;
 
 @Entity
 @Table(name = "cars")
+@Getter @Setter
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,5 +34,8 @@ public class Car {
 
     @OneToOne(cascade = {MERGE, REFRESH})
     private Driver carOwner;
+
+    @Enumerated(EnumType.STRING)
+    private CarType carType;
 
 }

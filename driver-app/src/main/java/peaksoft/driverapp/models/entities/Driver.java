@@ -1,5 +1,8 @@
 package peaksoft.driverapp.models.entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.UUID;
 
@@ -11,12 +14,15 @@ import static javax.persistence.FetchType.*;
  */
 @Entity
 @Table(name = "drivers")
+@Getter @Setter
 public class Driver {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
     private String driverName;
+
+    private String email;
 
     private int experience;
 

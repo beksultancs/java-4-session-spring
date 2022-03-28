@@ -9,3 +9,16 @@ spring:
     show-sql: true
 server:
   port: 5656
+
+
+driver-app:
+  standart:
+    landing: 60
+    per-km: 12
+  comfort:
+    landing: 80
+    per-km: 15
+  business-class:
+    landing: 100
+    per-km: 20
+

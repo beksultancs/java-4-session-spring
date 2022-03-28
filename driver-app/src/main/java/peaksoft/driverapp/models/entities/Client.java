@@ -5,6 +5,7 @@ import lombok.Setter;
 import peaksoft.driverapp.models.entities.BankAccount;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -26,7 +27,7 @@ public class Client {
     private String phoneNumber;
 
     @OneToMany(cascade = {MERGE, DETACH, REFRESH})
-    private List<Order> orders;
+    private List<Order> orders = new ArrayList<>();
 
     @OneToOne(cascade = ALL,
             fetch = LAZY)
