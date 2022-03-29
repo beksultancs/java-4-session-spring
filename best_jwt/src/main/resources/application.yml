@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5678/postgres
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+
+application:
+  jwt:
+    secretKey: veryveryveryveryverysecretkey
+    tokenExpirationAfterDays: 30
+

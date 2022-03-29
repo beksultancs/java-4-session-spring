@@ -19,6 +19,8 @@ public class ClientSaveDto {
     @ValidPhoneNumber
     private String phoneNumber;
     @NotBlank
+    private String password;
+    @NotBlank
     private String accountNumber;
 
 }

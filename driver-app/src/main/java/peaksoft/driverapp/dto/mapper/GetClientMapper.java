@@ -15,7 +15,7 @@ public class GetClientMapper implements Converter<Client, GetClientDto> {
         GetClientDto getClientDto = new GetClientDto();
         getClientDto.setId(client.getId());
         getClientDto.setName(client.getName());
-        getClientDto.setEmail(client.getEmail());
+        getClientDto.setEmail(client.getAuthInfo().getEmail());
         getClientDto.setPhoneNumber(client.getPhoneNumber());
         return getClientDto;
     }

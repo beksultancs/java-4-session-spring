@@ -1,6 +1,7 @@
 package peaksoft.driverapp.services;
 
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import peaksoft.driverapp.dto.client.ClientResponseDto;
 import peaksoft.driverapp.dto.client.ClientSaveDto;
@@ -29,8 +30,9 @@ public class ClientService {
     private final ClientRepository clientRepository;
     private final ClientMapper clientMapper;
     private final GetClientMapper getClientMapper;
+    private final PasswordEncoder passwordEncoder;
 
-    public ClientResponseDto save(ClientSaveDto clientSaveDto) {
+    public ClientResponseDto register(ClientSaveDto clientSaveDto) {
         String email = clientSaveDto.getEmail();
 
         boolean exists = clientRepository.existsByEmail(email);
@@ -40,6 +42,9 @@ public class ClientService {
                     String.format("client with email = %s has already exists", email)
             );
         }
+
+        String encodedPassword = passwordEncoder.encode(clientSaveDto.getPassword());
+        clientSaveDto.setPassword(encodedPassword);
 
         Client client = clientMapper.convert(clientSaveDto);
 
@@ -113,11 +118,11 @@ public class ClientService {
             client.setName(newName);
         }
 
-        String currentEmail = client.getEmail();
+        String currentEmail = client.getAuthInfo().getEmail();
         String newEmail = clientSaveDto.getEmail();
 
         if (!currentEmail.equals(newEmail)) {
-            client.setEmail(newEmail);
+            client.getAuthInfo().setEmail(newEmail);
         }
 
         String currentPhoneNumber = client.getPhoneNumber();
@@ -132,6 +137,14 @@ public class ClientService {
 
         if (!currentAccountNumber.equals(newAccountNumber)) {
             client.getBankAccount().setAccountNumber(newAccountNumber);
+        }
+
+        //update password
+        String currentPassword = client.getAuthInfo().getPassword(); // encoded
+        String newPassword = clientSaveDto.getPassword(); // not encoded
+
+        if (!passwordEncoder.matches(newPassword, currentPassword)) {
+            client.getAuthInfo().setPassword(passwordEncoder.encode(newPassword));
         }
 
         return clientMapper.deConvert(client);

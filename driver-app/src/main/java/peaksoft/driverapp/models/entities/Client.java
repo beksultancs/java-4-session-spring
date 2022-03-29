@@ -14,15 +14,14 @@ import static javax.persistence.FetchType.*;
 
 @Entity
 @Table(name = "clients")
-@Getter @Setter
+@Getter
+@Setter
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
     private String name;
-
-    private String email;
 
     private String phoneNumber;
 
@@ -32,4 +31,7 @@ public class Client {
     @OneToOne(cascade = ALL,
             fetch = EAGER)
     private BankAccount bankAccount;
+
+    @OneToOne(cascade = ALL)
+    private AuthInfo authInfo;
 }

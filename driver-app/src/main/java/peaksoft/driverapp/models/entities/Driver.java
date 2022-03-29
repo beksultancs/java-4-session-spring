@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import static javax.persistence.CascadeType.*;
@@ -38,4 +40,15 @@ public class Driver {
     @OneToOne(cascade = ALL,
             fetch = LAZY)
     private BankAccount bankAccount;
+
+    @OneToOne(cascade = {MERGE, REFRESH},
+            orphanRemoval = true,
+            fetch = LAZY)
+    private AuthInfo authInfo;
+
+    @OneToMany(mappedBy = "driver",
+            cascade = {MERGE, REFRESH, DETACH},
+            orphanRemoval = true)
+    private List<Order> orders = new ArrayList<>();
+
 }

@@ -11,6 +11,5 @@ server:
   port: 5656
   error:
     include-message: always
-    include-stacktrace: always
 
 

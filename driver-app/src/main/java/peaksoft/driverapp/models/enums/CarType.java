@@ -22,6 +22,7 @@ public enum CarType {
             new BigDecimal(20),
             new BigDecimal(100)
     );
+
     private final BigDecimal pricePerKM;
     private final BigDecimal priceForLanding;
 
